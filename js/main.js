@@ -22,11 +22,11 @@ loader.load(
 );
 
 
-const renderer = new THREE.WebGLRenderer({ alpha: true }); //Alpha: true allows for the transparent background
+const renderer = new THREE.WebGLRenderer({ alpha: true }); 
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("container3D").appendChild(renderer.domElement);
 
-camera.position.z = 50;
+camera.position.z = 45;
 
 const topLight = new THREE.DirectionalLight(0xffffff, 1);
 topLight.position.set(500, 500, 500)
