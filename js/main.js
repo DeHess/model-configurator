@@ -16,49 +16,32 @@ let controls;
 
 let objToRender = 'dino';
 
-
-
-//Load the file
 loader.load(
   `/models/base/base.glb`,
   function (gltf) {
-    //If the file is loaded, add it to the scene
     object = gltf.scene;
     scene.add(object);
   },
-  function (xhr) {
-    //While it is loading, log the progress
-    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-  },
   function (error) {
-    //If there is an error, log it
     console.error(error);
   }
 );
 
-//Instantiate a new renderer and set its size
+
 const renderer = new THREE.WebGLRenderer({ alpha: true }); //Alpha: true allows for the transparent background
 renderer.setSize(window.innerWidth, window.innerHeight);
-
-//Add the renderer to the DOM
 document.getElementById("container3D").appendChild(renderer.domElement);
 
-//Set how far the camera will be from the 3D model
-camera.position.z = 60;
+camera.position.z = 50;
 
-//Add lights to the scene, so we can actually see the 3D model
-const topLight = new THREE.DirectionalLight(0xffffff, 1); // (color, intensity)
-topLight.position.set(500, 500, 500) //top-left-ish
-topLight.castShadow = true;
+const topLight = new THREE.DirectionalLight(0xffffff, 1);
+topLight.position.set(500, 500, 500)
 scene.add(topLight);
 
-const ambientLight = new THREE.AmbientLight(0x333333, objToRender === "dino" ? 5 : 1);
+const ambientLight = new THREE.AmbientLight(0x333333, 5);
 scene.add(ambientLight);
 
-//This adds controls to the camera, so we can rotate / zoom it with the mouse
-if (objToRender === "dino") {
-  controls = new OrbitControls(camera, renderer.domElement);
-}
+controls = new OrbitControls(camera, renderer.domElement);
 
 //Render the scene
 function animate() {
