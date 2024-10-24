@@ -7,14 +7,14 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const loader = new GLTFLoader();
 
-let object;
-let controls;
+let baseModel;
+
 
 loader.load(
   `/models/base/base.glb`,
   function (gltf) {
-    object = gltf.scene;
-    scene.add(object);
+    baseModel = gltf.scene;
+    scene.add(baseModel);
   },
   function (error) {
     console.error(error);
@@ -36,6 +36,7 @@ scene.add(topLight);
 const ambientLight = new THREE.AmbientLight(0x333333, 5);
 scene.add(ambientLight);
 
+let controls;
 controls = new OrbitControls(camera, renderer.domElement);
 
 renderer.render(scene, camera);
