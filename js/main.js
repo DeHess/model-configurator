@@ -4,11 +4,14 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/l
 
 
 const scene = new THREE.Scene();
+
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const loader = new GLTFLoader();
+camera.position.z = 40;
+camera.position.y = 100;
 
 let baseModel;
 
+const loader = new GLTFLoader();
 loader.load(
   `/models/base/base.glb`,
   function (gltf) {
@@ -20,13 +23,9 @@ loader.load(
   }
 );
 
-
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); 
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("container3D").appendChild(renderer.domElement);
-
-camera.position.z = 40;
-camera.position.y = 100;
 
 const topLight = new THREE.DirectionalLight(0xffffff, 1);
 topLight.position.set(500, 500, 500)
