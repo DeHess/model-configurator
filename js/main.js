@@ -1,30 +1,22 @@
-//Import the THREE.js library
 import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
-// To allow for the camera to move around the scene
 import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js";
-// To allow for importing the .gltf file
 import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
 
-//Create a Three.JS Scene
-const scene = new THREE.Scene();
-//create a new camera with positions and angles
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-//Keep track of the mouse position, so we can make the eye move
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const loader = new GLTFLoader();
+
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 
-//Keep the 3D object on a global variable so we can access it later
-let object;
 
-//OrbitControls allow the camera to move around the scene
+let object;
 let controls;
 
-//Set which object to render
 let objToRender = 'dino';
 
-//Instantiate a loader for the .gltf file
-const loader = new GLTFLoader();
+
 
 //Load the file
 loader.load(
@@ -52,7 +44,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("container3D").appendChild(renderer.domElement);
 
 //Set how far the camera will be from the 3D model
-camera.position.z = 80;
+camera.position.z = 60;
 
 //Add lights to the scene, so we can actually see the 3D model
 const topLight = new THREE.DirectionalLight(0xffffff, 1); // (color, intensity)
