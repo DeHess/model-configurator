@@ -22,11 +22,12 @@ loader.load(
 );
 
 
-const renderer = new THREE.WebGLRenderer({ alpha: true }); 
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); 
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.getElementById("container3D").appendChild(renderer.domElement);
 
-camera.position.z = 45;
+camera.position.z = 40;
+camera.position.y = 100;
 
 const topLight = new THREE.DirectionalLight(0xffffff, 1);
 topLight.position.set(500, 500, 500)
