@@ -9,7 +9,6 @@ const loader = new GLTFLoader();
 
 let baseModel;
 
-
 loader.load(
   `/models/base/base.glb`,
   function (gltf) {
@@ -39,18 +38,15 @@ scene.add(ambientLight);
 let controls;
 controls = new OrbitControls(camera, renderer.domElement);
 
-renderer.render(scene, camera);
-
-function animate() {
-  requestAnimationFrame(animate);
-  renderer.render(scene, camera);
-}
-
 window.addEventListener("resize", function () {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
 
 animate();
