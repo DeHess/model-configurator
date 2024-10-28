@@ -6,17 +6,22 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/l
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 40;
-camera.position.y = 100;
+camera.position.z = 2;
+camera.position.y = 2;
 
-let baseModel;
+let carModel;
 
 const loader = new GLTFLoader();
 loader.load(
-  `/models/base/base.glb`,
+  `/models/car.glb`,
   function (gltf) {
-    baseModel = gltf.scene;
-    scene.add(baseModel);
+    carModel = gltf.scene;
+    scene.add(carModel);
+
+    let rimz = scene.getObjectByName("rimz")
+    console.log(rimz)
+    rimz.visible = false;
+
   },
   function (error) {
     console.error(error);
