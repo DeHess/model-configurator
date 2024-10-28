@@ -22,14 +22,22 @@ loader.load(
     let lights = scene.getObjectByName("lights")
     let wipers = scene.getObjectByName("wipers")
     let windows = scene.getObjectByName("windows")
+    let seats1 = scene.getObjectByName("seats1")
+    let seats2 = scene.getObjectByName("seats2")
+
+
 
     let body = scene.getObjectByName("body")
-
+    let upperbody = scene.getObjectByName("upperbody")
 
     let controls = {
         toggleWheelVisibility: function() {
           rimz.visible = !rimz.visible
           tires.visible = !tires.visible
+        },
+        toggleSeatsVisibility: function() {
+          seats1.visible = !seats1.visible
+          seats2.visible = !seats2.visible
         },
         toggleWiperVisibility: function() {
           wipers.visible = !wipers.visible
@@ -45,6 +53,7 @@ loader.load(
 
     const gui = new dat.GUI()
     gui.add(controls, 'toggleWheelVisibility').name('Toggle Wheels')
+    gui.add(controls, 'toggleSeatsVisibility').name('Toggle Seats')
     gui.add(controls, 'toggleWiperVisibility').name('Toggle Wipers')
     gui.add(controls, 'toggleWindowVisibility').name('Toggle Windows')
     gui.add(controls, 'toggleLightsVisibility').name('Toggle Lights')
