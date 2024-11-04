@@ -25,10 +25,10 @@ loader.load(
     let seats1 = scene.getObjectByName("seats1")
     let seats2 = scene.getObjectByName("seats2")
 
-
-
     let body = scene.getObjectByName("body")
     let upperbody = scene.getObjectByName("upperbody")
+
+    console.log(body.material.color)
 
     let controls = {
         toggleWheelVisibility: function() {
@@ -50,6 +50,11 @@ loader.load(
         }
     }
 
+    const colorController = {
+      upperColor: `#${upperbody.material.color.getHexString()}`,
+      lowerColor: `#${body.material.color.getHexString()}`
+    }
+
 
     const gui = new dat.GUI()
     gui.add(controls, 'toggleWheelVisibility').name('Toggle Wheels')
@@ -57,7 +62,9 @@ loader.load(
     gui.add(controls, 'toggleWiperVisibility').name('Toggle Wipers')
     gui.add(controls, 'toggleWindowVisibility').name('Toggle Windows')
     gui.add(controls, 'toggleLightsVisibility').name('Toggle Lights')
-    
+    gui.addColor(colorController, 'upperColor').name('Upper Chassis').onChange((value) => {upperbody.material.color.set(value)})
+    gui.addColor(colorController, 'lowerColor').name('Lower Chassis').onChange((value) => {body.material.color.set(value)})
+  
   },
   function (error) {
     console.error(error);
